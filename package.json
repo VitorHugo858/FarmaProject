@@ -1,0 +1,38 @@
+{
+  "name": "farma-market",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node ./node_modules/vite/bin/vite.js",
+    "dev:all": "node ./node_modules/concurrently/dist/bin/index.js --kill-others-on-fail -n API,WEB -c green,cyan \"node server/servidor.js\" \"node ./node_modules/vite/bin/vite.js --host\"",
+    "dev:integrado": "node ./node_modules/concurrently/dist/bin/index.js --kill-others-on-fail -n API,WEB,WHATSAPP -c green,cyan,magenta \"node server/servidor.js\" \"node ./node_modules/vite/bin/vite.js --host\" \"node scripts/iniciar-whatsapp.js\"",
+    "whatsapp": "npm --prefix ../whatsapiproject/manager-aichat/backend start",
+    "server": "node --watch server/servidor.js",
+    "server:start": "node server/servidor.js",
+    "build": "node ./node_modules/typescript/bin/tsc -b && node ./node_modules/vite/bin/vite.js build",
+    "preview": "node ./node_modules/vite/bin/vite.js preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
+    "typescript": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "lucide-react": "latest",
+    "vite-plugin-pwa": "latest",
+    "bcryptjs": "latest",
+    "cors": "latest",
+    "concurrently": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "jsonwebtoken": "latest",
+    "mysql2": "latest"
+    ,"multer": "latest"
+    ,"read-excel-file": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/react-dom": "latest"
+  }
+}

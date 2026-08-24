@@ -1,0 +1,75 @@
+# Dependências
+node_modules/
+
+# Builds, cache e arquivos gerados
+dist/
+dev-dist/
+coverage/
+.cache/
+.vite/
+*.tsbuildinfo
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Sessões e autenticação do WhatsApp
+.wwebjs_auth/
+.wwebjs_cache/
+**/.wwebjs_auth/
+**/.wwebjs_cache/
+session/
+sessions/
+
+# Arquivos enviados por usuários
+uploads/produtos/*
+uploads/farmacias/*
+uploads/receitas/*
+uploads/products/*
+uploads/stores/*
+!uploads/produtos/.gitkeep
+!uploads/farmacias/.gitkeep
+!uploads/receitas/.gitkeep
+!uploads/products/.gitkeep
+!uploads/stores/.gitkeep
+
+# Backups, exportações e pacotes portáteis
+database/backups/
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+*.sql.gz
+
+# Bancos locais
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+# Editores e sistema operacional
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Arquivos temporários
+tmp/
+temp/
+*.tmp
+*.temp
+~$*
