@@ -1,0 +1,1 @@
+.orders-empty{min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#83958f;gap:7px}.orders-empty svg{width:34px;height:34px;color:#9ab9af}.orders-empty b{font-size:11px;color:#48635b}.orders-empty small{font-size:8px}.order-tabs button:not(.active):hover{color:#176b57;background:#f7faf8}

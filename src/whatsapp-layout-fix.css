@@ -1,0 +1,3 @@
+.whatsapp-layout{min-height:0}.whatsapp-chat{height:100%;min-height:0;overflow:hidden}.whatsapp-messages{min-height:0;overflow-y:auto}.whatsapp-chat>.whatsapp-reply{flex:0 0 auto}.whatsapp-order{height:100%;min-height:0;overflow:hidden}.whatsapp-order .whatsapp-cart{flex:0 1 auto;min-height:70px;max-height:190px;overflow-y:auto}.whatsapp-template{flex:1 1 auto;min-height:180px;overflow-y:auto}
+@media(max-width:1100px){.whatsapp-chat{height:620px}.whatsapp-order{height:auto;overflow:visible}.whatsapp-template{flex:none}.whatsapp-order .whatsapp-cart{max-height:220px}}
+@media(max-width:800px){.whatsapp-chat{height:520px}}
