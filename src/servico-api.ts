@@ -12,6 +12,7 @@ export type ClienteWhatsapp = { id:number;phone:string;name?:string }
 export type MensagemWhatsapp = { id:number;conversationId:number;direction:'INBOUND'|'OUTBOUND';senderType:string;content:string;createdAt:string }
 export type ConversaWhatsapp = { id:number;status:'OPEN'|'CLOSED';mode:'AI'|'HUMAN';lastMessageAt:string;customer:ClienteWhatsapp;lastMessage?:MensagemWhatsapp;messageCount:number }
 export type DetalhesConversaWhatsapp = { conversation:ConversaWhatsapp;messages:MensagemWhatsapp[] }
+export type DetalhesAtendimento = { conversation:{id:number;mode:'AI'|'HUMAN';status:'OPEN'|'CLOSED'};messages:MensagemWhatsapp[] }
 export type PedidoWhatsappResultado = { vendas:number[];total:number;itens:{produto_id:number;quantidade:number}[];mensagem_whatsapp:MensagemWhatsapp|null;aviso:string|null;message:string }
 export type SugestaoCadastroProduto = {id:number;name:string;description:string;category:string;category_id:number;brand?:string;brand_id?:number;medication_type?:string;medication_type_id?:number;presentation?:string;dosage?:string;aliases?:string;verified_attributes?:string;approved_claims?:string;sale_restriction?:string;is_generic?:boolean;volume?:string;concentracao?:string;genero_publico?:string;notas_saida?:string;notas_corpo?:string;notas_fundo?:string;destaque_1?:string;destaque_2?:string;destaque_3?:string;destaque_4?:string}
 export type BiVendasApi = {summary:{sales_count:number;revenue:number;units:number;average_ticket:number;counter_sales:number;online_sales:number};days:{day:string;total:number;sales_count:number}[];top_products:{name:string;units:number;revenue:number}[]}
@@ -73,5 +74,9 @@ export const api = {
   conversasWhatsapp: () => requisicao<ConversaWhatsapp[]>('/vendedor/whatsapp/conversas'),
   mensagensWhatsapp: (id:number) => requisicao<DetalhesConversaWhatsapp>(`/vendedor/whatsapp/conversas/${id}/mensagens`),
   enviarMensagemWhatsapp: (id:number,content:string) => requisicao<MensagemWhatsapp>(`/vendedor/whatsapp/conversas/${id}/mensagens`,{method:'POST',body:JSON.stringify({content})}),
+  alterarModoAtendimento: (id:number,mode:'AI'|'HUMAN') => requisicao<ConversaWhatsapp>(`/vendedor/whatsapp/conversas/${id}/modo`,{method:'PATCH',body:JSON.stringify({mode})}),
+  finalizarAtendimento: (id:number) => requisicao<ConversaWhatsapp>(`/vendedor/whatsapp/conversas/${id}/finalizar`,{method:'POST'}),
   confirmarPedidoWhatsapp: (id:number,itens:{produto_id:number;quantidade:number}[]) => requisicao<PedidoWhatsappResultado>(`/vendedor/whatsapp/conversas/${id}/pedido`,{method:'POST',body:JSON.stringify({itens})}),
+  mensagensAtendimento: () => requisicao<DetalhesAtendimento>('/consumidor/atendimento/mensagens'),
+  enviarMensagemAtendimento: (content:string) => requisicao<{inbound:MensagemWhatsapp;outbound:MensagemWhatsapp}>('/consumidor/atendimento/mensagens',{method:'POST',body:JSON.stringify({content})}),
 }

@@ -87,6 +87,32 @@ app.post('/api/vendedor/whatsapp/conversas/:id/mensagens', autenticar, exigirPer
   res.status(201).json(mensagem)
 }))
 
+app.patch('/api/vendedor/whatsapp/conversas/:id/modo', autenticar, exigirPerfil('seller'), asyncRoute(async (req, res) => {
+  const mode = String(req.body.mode || '').toUpperCase()
+  if (!['AI','HUMAN'].includes(mode)) return res.status(400).json({ message:'O modo deve ser IA ou humano.' })
+  res.json(await requisitarWhatsapp(`/api/dashboard/conversations/${Number(req.params.id)}/mode`, {
+    method:'PATCH', body:JSON.stringify({ mode })
+  }))
+}))
+
+app.post('/api/vendedor/whatsapp/conversas/:id/finalizar', autenticar, exigirPerfil('seller'), asyncRoute(async (req, res) => {
+  res.json(await requisitarWhatsapp(`/api/dashboard/conversations/${Number(req.params.id)}/close`, { method:'POST' }))
+}))
+
+app.get('/api/consumidor/atendimento/mensagens', autenticar, exigirPerfil('consumer'), asyncRoute(async (req, res) => {
+  res.json(await requisitarWhatsapp(`/api/webchat/farma-${req.user.id}/messages`))
+}))
+
+app.post('/api/consumidor/atendimento/mensagens', autenticar, exigirPerfil('consumer'), asyncRoute(async (req, res) => {
+  const content = String(req.body.content || '').trim()
+  if (!content || content.length > 4000) return res.status(400).json({ message:'A mensagem deve conter entre 1 e 4.000 caracteres.' })
+  const [usuarios] = await conexoes.query('SELECT nome FROM usuarios WHERE id=? LIMIT 1',[req.user.id])
+  const resultado = await requisitarWhatsapp(`/api/webchat/farma-${req.user.id}/messages`, {
+    method:'POST', body:JSON.stringify({ content, name:usuarios[0]?.nome || 'Consumidor' })
+  })
+  res.status(201).json(resultado)
+}))
+
 app.post('/api/vendedor/whatsapp/conversas/:id/pedido', autenticar, exigirPerfil('seller'), asyncRoute(async (req, res) => {
   const conversaId = Number(req.params.id)
   if (!Number.isInteger(conversaId) || conversaId < 1) return res.status(400).json({ message:'Conversa inválida.' })

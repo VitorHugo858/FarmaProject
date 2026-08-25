@@ -22,7 +22,9 @@ import './whatsapp.css'
 import './whatsapp-pedido.css'
 import './whatsapp-template.css'
 import './whatsapp-layout-fix.css'
+import './controles-atendimento.css'
 import './assistente-cadastro.css'
+import './atendimento-consumidor.css'
 
 registerSW({ immediate: true })
 

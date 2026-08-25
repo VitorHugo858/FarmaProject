@@ -2,7 +2,7 @@ import { spawn } from 'node:child_process'
 import http from 'node:http'
 import path from 'node:path'
 
-const pastaBackend = path.resolve('..','whatsapiproject','manager-aichat','backend')
+const pastaBackend = path.resolve('..','whatsapiproject','manager-aichat_Farma','backend')
 
 function verificarServico() {
   return new Promise(resolve => {

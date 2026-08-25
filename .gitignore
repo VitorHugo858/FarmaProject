@@ -22,6 +22,10 @@ pnpm-debug.log*
 *.key
 *.p12
 *.pfx
+*.crt
+*.cer
+credentials*.json
+service-account*.json
 
 # Sessões e autenticação do WhatsApp
 .wwebjs_auth/
@@ -30,6 +34,8 @@ pnpm-debug.log*
 **/.wwebjs_cache/
 session/
 sessions/
+auth_info*/
+tokens/
 
 # Arquivos enviados por usuários
 uploads/produtos/*
@@ -51,12 +57,17 @@ database/backups/
 *.tar
 *.tar.gz
 *.sql.gz
+*.bak
+*.backup
+*.codex-backup
 
 # Bancos locais
 *.sqlite
 *.sqlite3
 *.db
 *.db-journal
+*.db-shm
+*.db-wal
 
 # Editores e sistema operacional
 .vscode/
@@ -73,3 +84,7 @@ temp/
 *.tmp
 *.temp
 ~$*
+*.pid
+*.pid.lock
+.npm/
+logs/
